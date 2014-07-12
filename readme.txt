@@ -1,14 +1,14 @@
 === Theme My Ontraport Smartform ===
 Contributors: itmooti
-Donate link: https://www.itmooti.com/ontraport-tracking-made-easy-order/
+Donate link: https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wordpress/
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make beautiful looking order forms with a simple shortcode!
+Make beautiful looking ONTRAPORT smartforms with a simple shortcode!
 
 == Description ==
 
@@ -25,11 +25,11 @@ This works for both Office Autopilot 2.4 and Ontraport 3.0
 
 = Learn More In Our Knowledge Base =
 
-<a href="https://itmooti.zendesk.com/hc/en-us/articles/202715690-How-to-use-the-OAP-UTM-Plugin">ITMOOTI Knowledge Base for Ontraport Apps/Integrations and Plugins</a>
+<a href="https://itmooti.zendesk.com/hc/en-us/articles/202767340">ITMOOTI Knowledge Base for Ontraport Apps/Integrations and Plugins</a>
 
 = How do I get a License Key? =
 
-Please visit this URL <a href="http://app.itmooti.com/wp-plugins/oap-utm/license/">http://app.itmooti.com/wp-plugins/oap-utm/license/</a> to get a License Key .
+Please visit this URL <a href="https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wordpress/">https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wordpress/</a> to get a License Key .
 
 = Does it work for Office Autopilot and Ontraport? =
 
@@ -37,7 +37,7 @@ Yes this plugin is made to work for both versions of the application. You choose
 
 = How long is the Free Trial? =
 
-The free trial is for 7 days. After that you can buy a <a href="http://app.itmooti.com/wp-plugins/oap-utm/license/">HERE</a> to get a License Key .
+The free trial is for 7 days. After that you can buy a <a href="https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wordpress/">HERE</a> to get a License Key .
 
 = Where can I get support? =
 
@@ -48,13 +48,23 @@ Send us an email to support@itmooti.com or visit our <a href="https://itmooti.ze
 1. View of the Plugins Settings Window
 2. Example of the plugin using the Amber theme in OP2
 3. Example of the plugin using the Jade theme in OP2
-3. Example of the plugin using the Amber theme in Divi
+4. Example of the plugin using the Amber theme in Divi
+5. Example of the plugin using the Ruby theme in OP2
+6. Example of the plugin using the Quartz theme in OP2
+7. Example of the plugin using the Saphire theme in OP2
+8. Example of the plugin using the Pyrite theme in OP2
+9. Example of the plugin using the Opal theme in OP2
+10. Example of the plugin using the Onyx theme in OP2
 
 == Upgrade Notice ==
 
 Nothing yet.
 
 == Changelog ==
+
+= 1.0.2 =
+
+Updates of screen shots
 
 = 1.0.1 =
 
