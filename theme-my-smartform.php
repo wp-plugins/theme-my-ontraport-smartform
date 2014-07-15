@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Theme My Ontraport Smartform
- * Plugin URI: http://www.itmooti.com.au/
+ * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -38,14 +38,12 @@ class itmooti_oap_custom_theme
 				), $atts );
 				$atts["theme"]=strtolower($atts["theme"]);
 				add_action( 'wp_enqueue_scripts', array($this, 'itmooti_oap_custom_js'));
-				return '<script src="'.plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__).'"></script></script><link href="'.plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__).'" type="text/css" rel="stylesheet" />';
+				wp_enqueue_script('jquery');
+				wp_enqueue_script('oap_custom_theme-'.$atts["theme"], plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__));
+				wp_enqueue_style('oap_custom_theme-'.$atts["theme"], plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__));
 			}
 		}
 		return "<!-- Wrong API Credentials -->";
-	}
-	
-	function itmooti_oap_custom_js(){
-		wp_enqueue_script('jquery');
 	}
 
 	public function show_license_info(){
