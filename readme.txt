@@ -4,7 +4,7 @@ Donate link: https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wor
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ This works for both Office Autopilot 2.4 and Ontraport 3.0
 
 == Installation ==
 
-1. Upload `oap-utm` to the `/wp-content/plugins/` directory
+1. Upload `theme-my-ontraport-smartform` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -37,7 +37,7 @@ Yes this plugin is made to work for both versions of the application. You choose
 
 = How long is the Free Trial? =
 
-The free trial is for 7 days. After that you can buy a <a href="https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wordpress/">HERE</a> to get a License Key .
+The free trial is for 7 days. After that you can buy a <a href="http://j.mp/1xhDPTI">HERE</a> to get a License Key .
 
 = Where can I get support? =
 
@@ -61,6 +61,10 @@ Send us an email to support@itmooti.com or visit our <a href="https://itmooti.ze
 Nothing yet.
 
 == Changelog ==
+
+= 1.0.5 =
+
+Fixed License URL
 
 = 1.0.4 =
 

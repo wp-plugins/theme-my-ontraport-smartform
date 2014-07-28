@@ -3,7 +3,7 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -52,13 +52,13 @@ class itmooti_oap_custom_theme
 		$license_key=get_option('oap_custom_theme_license_key', "");
 		if(empty($license_key)){
 			echo '<div class="updated">
-        		<p>Ontraport/Office Auto Pilot Custom Themes: How do I get License Key?<br />Please visit this URL <a href="http://app.itmooti.com/wp-plugins/oap-utm/license/">http://app.itmooti.com/wp-plugins/oap-utm/license/</a> to get a License Key .</p>
+        		<p>Theme My Smartforms: How do I get License Key?<br />Please visit this URL <a href="http://j.mp/1xhDPTI">http://j.mp/1xhDPTI</a> to get a License Key .</p>
 	    	</div>';
 		}
 		$message=get_option("itmooti-oap-themes_message", "");
 		if($message!=""){
 			echo '<div class="error">
-        		<p>Ontraport/Office Auto Pilot Custom Themes: '.$message.'</p>
+        		<p>Theme My Smartforms: '.$message.'</p>
 	    	</div>';
 		}
 	}
@@ -67,7 +67,7 @@ class itmooti_oap_custom_theme
         // This page will be under "Settings"
         add_options_page(
             'Settings Admin', 
-            'OAP Custom Theme Settings', 
+            'Theme My Smartforms', 
             'manage_options', 
             'itmooti-oap-admin', 
             array( $this, 'create_admin_page' )
@@ -80,7 +80,7 @@ class itmooti_oap_custom_theme
 		?>
         <div class="wrap">
             <?php screen_icon(); ?>
-            <h2>Ontraport/Office Auto Pilot Custom Themes Settings</h2>           
+            <h2>Theme My Smartforms Settings</h2>           
             <form method="post">
            	  	<h3>Plugin Credentials</h3>
                 Provide Plugin Credentials below:
