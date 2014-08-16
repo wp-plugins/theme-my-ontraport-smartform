@@ -45,10 +45,10 @@ jQuery(window).load(function(){
 	jQuery("form").submit(function(){
 		$err=new Array();
 		jQuery(".moonray-form-error-message, div.mr_error_wrapper").each(function(){
-			if(jQuery(this).attr("visibility")!="hidden"){
+			if(jQuery(this).css("visibility")!="hidden" && (jQuery(this).hasClass("mr_error_wrapper") && jQuery(this).next().hasClass("mr_error"))){
 				$text=jQuery(this).text();
 				if($text=="Please complete this mandatory field." || $text=="This field is required.")
-					$text="Please complete all mandatory field markeds red.";
+					$text="Please complete all mandatory field marked red.";
 				if($err.indexOf($text)===-1){
 					$err[$err.length]=$text;
 				}

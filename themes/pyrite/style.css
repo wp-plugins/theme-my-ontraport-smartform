@@ -344,3 +344,7 @@ p{ margin-bottom:0px !important;}
     margin-left: 6px;
     position: absolute;
 }
+div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
+    display: inline !important;
+    float: none !important;
+}

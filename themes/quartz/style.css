@@ -239,7 +239,7 @@ div.moonray_forms div.expire select[name=payment_expire_year]{
     clear: none !important;
     display: block !important;
     float: left !important;
-    margin-left: 2%;
+    margin-left: 2% !important;
     width: 31% !important;
 }
 .moonray-form .moonray-form-element-paymentmethod .moonray-form-input-type-payment-code,
@@ -405,8 +405,12 @@ div.mr_error_wrapper{ display:none !important}
     line-height: 100%;
     padding-left: 6px !important;
 }
-.moonray_forms a.cvchelp{ position:absolute; right:7px; bottom:23%; z-index:999}
+.moonray_forms a.cvchelp{ position:absolute; right:7px; bottom:39%; z-index:999}
 .moonray_forms .ccCVC{position: relative;}
 .moonray_forms{
 	padding: 20px !important;
+}
+div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
+    display: inline !important;
+    float: none !important;
 }

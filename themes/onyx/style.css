@@ -267,3 +267,7 @@ div.mr_error_wrapper{ display:none !important}
 }
 .moonray_forms a.cvchelp{ position:absolute; right:12px; bottom:26%;}
 .moonray_forms .ccCVC{position: relative;}
+div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
+    display: inline !important;
+    float: none !important;
+}
