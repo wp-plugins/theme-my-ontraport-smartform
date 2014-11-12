@@ -62,6 +62,10 @@ Nothing yet.
 
 == Changelog ==
 
+= 1.0.7 =
+
+Responsive Layout issue fixed
+
 = 1.0.6 =
 
 Fixed Theme CSS issues and Javascript PayPal checkbox issue.

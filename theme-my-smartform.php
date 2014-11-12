@@ -3,7 +3,7 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.0.6
+ * Version: 1.0.7
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -12,7 +12,7 @@
 class itmooti_oap_custom_theme
 {
     private $options;
-	private $url="http://app.itmooti.com/wp-plugins/oap-utm/api.php";
+	private $url="https://app.itmooti.com/wp-plugins/oap-utm/api.php";
 	
 	public function __construct(){
 		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
@@ -29,6 +29,7 @@ class itmooti_oap_custom_theme
 			curl_setopt ($session, CURLOPT_POST, true);
 			curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
 			curl_setopt($session, CURLOPT_HEADER, false);
+			curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 			$response = json_decode(curl_exec($session));
 			curl_close($session);
@@ -38,7 +39,7 @@ class itmooti_oap_custom_theme
 				), $atts );
 				$atts["theme"]=strtolower($atts["theme"]);
 				add_action( 'wp_enqueue_scripts', array($this, 'itmooti_oap_custom_js'));
-				return '<script src="'.plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__).'"></script></script><link href="'.plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__).'" type="text/css" rel="stylesheet" />';
+				return '<script src="'.plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__).'"></script><link href="'.plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__).'" type="text/css" rel="stylesheet" />';
 			}
 		}
 		return "<!-- Wrong API Credentials -->";
@@ -100,6 +101,7 @@ class itmooti_oap_custom_theme
 					curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
 					curl_setopt($session, CURLOPT_HEADER, false);
 					curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
 					$response = json_decode(curl_exec($session));
 					curl_close($session);
 					if(isset($response->status) && $response->status=="success"){
@@ -117,6 +119,15 @@ class itmooti_oap_custom_theme
 				?>
                 <h3>How to Use</h3>
                 <p>Use shortcode <strong>[custom_form_style]</strong> in post or page content to include the Theme files.</p>
+                <p>All the themes shortcode are listed below</p>
+                <?php
+				$dir=plugin_dir_path(__FILE__)."themes/";
+                foreach(scandir($dir) as $theme){
+					if(!in_array($theme, array(".", ".."))){
+						echo '<strong>[custom_form_style theme="'.$theme.'"]</strong><br />';
+					}
+				}
+				?>
                 <?php
                 submit_button(); 
             ?>
