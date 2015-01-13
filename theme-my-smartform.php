@@ -3,7 +3,7 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -12,9 +12,15 @@
 class itmooti_oap_custom_theme
 {
     private $options;
-	private $url="https://app.itmooti.com/wp-plugins/oap-utm/api.php";
+	private $url="//app.itmooti.com/wp-plugins/oap-utm/api.php";
 	
 	public function __construct(){
+		if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443){
+			$this->url="https:".$this->url;
+		}
+		else{
+			$this->url="http:".$this->url;
+		}
 		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
 		add_action( 'admin_notices', array( $this, 'show_license_info' ) );
 		add_shortcode( 'custom_form_style', array($this, 'itmooti_oap_custom_theme'));
@@ -137,4 +143,3 @@ class itmooti_oap_custom_theme
     }
 }
 $itmooti_oap_custom_theme=new itmooti_oap_custom_theme();
-?>

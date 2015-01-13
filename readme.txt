@@ -4,7 +4,7 @@ Donate link: https://www.itmooti.com/theme-my-ontraport-smartform-plugin-for-wor
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ Send us an email to support@itmooti.com or visit our <a href="https://itmooti.ze
 Nothing yet.
 
 == Changelog ==
+
+= 1.0.8 =
+
+Fixed the License Verification issue.
 
 = 1.0.7 =
 
