@@ -257,7 +257,6 @@ div.moonray_forms div.expire select[name=payment_expire_year]{
 
 .moonray-form-payments-element th {
     background: none repeat scroll 0 0 #e6f0d7 !important;
-    border: 0 none !important;
     color: #0e273d !important;
     font-size: 14px !important;
     font-weight: bold !important;
@@ -272,8 +271,6 @@ div.moonray_forms div.expire select[name=payment_expire_year]{
 }
 .moonray-form-payments-element td {
     background: none repeat scroll 0 0 #fff !important;
-    border-left: 0 none !important;
-    border-right: 0 none !important;
     font-size: 14px !important;
     padding: 15px !important;
 }
@@ -304,7 +301,8 @@ div.moonray_forms div.expire select[name=payment_expire_year]{
     text-align: right !important;
 }
 .moonray-form-payments-element td:first-child {
-
+width: 170px;
+border-width: 0 1px 1px;
 }
 div.moonray_order_form table.moonray_order_form_totals{ border:1px solid #bcbec0 !important; border-radius: 10px !important;}
 .moonray_forms .priceDisplay{ background:none !important;}
@@ -358,4 +356,44 @@ div.mr_error_wrapper{ display:none !important}
 div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
     display: inline !important;
     float: none !important;
+}
+.moonray-form-error-message.coupon-error {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #f00;
+    border-radius: 3px;
+    box-sizing: unset !important;
+    display: block !important;
+    height: auto !important;
+    line-height: 20px !important;
+    padding: 10px !important;
+}
+.ussr-icon.ussr-icon-checkmark {
+    background: none repeat scroll 0 0 #eee;
+    border: 1px solid #999;
+    display: block;
+    height: 20px;
+    position: absolute;
+    right: 6px;
+    top: 21px;
+    width: 20px;
+}
+.moonray-form-element-wrapper.moonray-form-element-wrapper-contracted.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-select > br {
+    display: none;
+}
+.coupon-code-submit-btn {
+    position: relative;
+}
+.moonray-form input[name="couponCode"] {
+    padding-right: 28px !important;
+}
+.moonray-form label.checkbox, .moonray_forms label.checkbox, .moonray-form label.radio, .moonray_forms label.radio {
+    display: inline !important;
+    padding-left: 10px !important;
+}
+.moonray-form .moonray-form-input-type-payment-code, .moonray-form .moonray-form-input-type-payment-exp-year {
+    padding-left: 10px !important;
+}
+.moonray-form-payments-element td{ vertical-align:top !important;}
+.moonray-form-payments-element th:last-child{
+	border-right:none !important;
 }
