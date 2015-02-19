@@ -293,24 +293,28 @@ div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
     float: none !important;
 }
 .moonray-form-error-message.coupon-error {
-    background: none repeat scroll 0 0 #fff;
-    border: 1px solid #f00;
+     background-color: #ffffff !important;
+    border: 1px solid #ff0000;
     border-radius: 3px;
-    box-sizing: unset !important;
+    box-sizing: border-box !important;
     display: block !important;
     height: auto !important;
+    left: 0;
     line-height: 20px !important;
     padding: 10px !important;
+    position: absolute !important;
+    width: 95% !important;
+    z-index: 9999;
 }
 .ussr-icon.ussr-icon-checkmark {
-    background: none repeat scroll 0 0 #eee;
+    background-color:#eee;
     border: 1px solid #999;
     display: block;
-    height: 20px;
+    height: 16px;
     position: absolute;
     right: 6px;
-    top: 16px;
-    width: 20px;
+    top: 22px;
+    width: 18px;
 }
 
 .moonray-form-element-wrapper.moonray-form-element-wrapper-contracted.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-select > br {
@@ -325,6 +329,8 @@ div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
 }
 .coupon-code-submit-btn {
     position: relative;
+	border:0 !important;
+	height:0 !important;
 }
 .moonray-form input[name="couponCode"] {
     padding-right: 28px !important;
@@ -334,3 +340,6 @@ div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
     padding-left: 10px !important;
 }
 .moonray-form-payments-element td{ vertical-align:top !important;}
+.moonray-form input[name="couponCode"]{ height:auto !important;}
+.moonray-form, .moonray_forms{ position: relative;}
+.moonray-form .moonray-form-element-paymentmethod .moonray-form-element-paypal{ width:100% !important;}
