@@ -7,19 +7,69 @@
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
- 
 
 class itmooti_oap_custom_theme
 {
     private $options;
-	private $url="https://app.itmooti.com/wp-plugins/oap-utm/api.php";
+	private $url;
+	private $plugin_links;
 	
 	public function __construct(){
+		$isSecure = false;
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+			$isSecure = true;
+		}
+		elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+			$isSecure = true;
+		}
+		$this->url=($isSecure ? 'https' : 'http')."://app.itmooti.com/wp-plugins/oap-utm/api.php";
+		$request= "plugin_links";
+		$postargs = "plugin=itmooti-oap-themes&request=".urlencode($request);
+		$session = curl_init($this->url);
+		curl_setopt ($session, CURLOPT_POST, true);
+		curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
+		curl_setopt($session, CURLOPT_HEADER, false);
+		curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+		$response = json_decode(curl_exec($session));
+		curl_close($session);
+		if(isset($response->status) && $response->status=="success"){
+			$this->plugin_links=$response->message;
+		}
+		else{
+			$this->plugin_links->support_link="";
+			$this->plugin_links->license_link="";
+		}
 		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
 		add_action( 'admin_notices', array( $this, 'show_license_info' ) );
 		add_shortcode( 'custom_form_style', array($this, 'itmooti_oap_custom_theme'));
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this, 'itmooti_plugin_action_link'));
+		add_filter( 'plugin_row_meta', array($this, 'itmooti_plugin_meta_link'), 10, 2);
     }
 	
+	function itmooti_plugin_action_link( $links ) {
+		return array_merge(
+			array(
+				'settings' => '<a href="options-general.php?page=itmooti-oap-admin">Settings</a>',
+				'support_link' => '<a href="'.$this->plugin_links->support_link.'" target="_blank">Support</a>'
+			),
+			$links
+		);
+	}
+	function itmooti_plugin_meta_link( $links, $file ) {
+		$plugin = plugin_basename(__FILE__);
+		if ( $file == $plugin ) {
+			return array_merge(
+				$links,
+				array(
+					'settings' => '<a href="options-general.php?page=itmooti-oap-admin">Settings</a>',
+					'support_link' => '<a href="'.$this->plugin_links->support_link.'" target="_blank">Support</a>'
+				)
+			);
+		}
+		return $links;
+	}
+	 
 	public function itmooti_oap_custom_theme( $atts ) {
 		$license_key=get_option('oap_custom_theme_license_key', "");
 		if(!empty($license_key)){
@@ -53,13 +103,13 @@ class itmooti_oap_custom_theme
 		$license_key=get_option('oap_custom_theme_license_key', "");
 		if(empty($license_key)){
 			echo '<div class="updated">
-        		<p>Theme My Smartforms: How do I get License Key?<br />Please visit this URL <a href="http://j.mp/1xhDPTI">http://j.mp/1xhDPTI</a> to get a License Key .</p>
+        		<p><strong>Theme My Smartforms:</strong> How do I get License Key?<br />Please visit this URL <a target="_blank" href="'.$this->plugin_links->license_link.'">'.$this->plugin_links->license_link.'</a> to get a License Key .</p>
 	    	</div>';
 		}
 		$message=get_option("itmooti-oap-themes_message", "");
 		if($message!=""){
 			echo '<div class="error">
-        		<p>Theme My Smartforms: '.$message.'</p>
+        		<p><strong>Theme My Smartforms:</strong> '.$message.'</p>
 	    	</div>';
 		}
 	}
@@ -119,7 +169,7 @@ class itmooti_oap_custom_theme
 				?>
                 <h3>How to Use</h3>
                 <p>Use shortcode <strong>[custom_form_style]</strong> in post or page content to include the Theme files.</p>
-                <p>All the themes shortcode are listed below</p>
+                <p>All themes shortcode are listed below</p>
                 <?php
 				$dir=plugin_dir_path(__FILE__)."themes/";
                 foreach(scandir($dir) as $theme){
@@ -137,4 +187,3 @@ class itmooti_oap_custom_theme
     }
 }
 $itmooti_oap_custom_theme=new itmooti_oap_custom_theme();
-?>
