@@ -3,7 +3,8 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.2.2
+ * Version: 1.2.1
+ * Stable tag: 1.2.1
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
