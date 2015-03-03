@@ -4,6 +4,7 @@
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
  * Version: 1.2.2
+ * Stable tag: 1.2.2
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -37,8 +38,7 @@ class itmooti_oap_custom_theme
 			$this->plugin_links=$response->message;
 		}
 		else{
-			$this->plugin_links->support_link="";
-			$this->plugin_links->license_link="";
+			$this->plugin_links=(object)array("support_link"=>"", "license_link"=>"");
 		}
 		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
 		add_action( 'admin_notices', array( $this, 'show_license_info' ) );
