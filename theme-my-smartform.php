@@ -3,8 +3,8 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.2.2
- * Stable tag: 1.2.2
+ * Version: 1.2.4
+ * Stable tag: 1.2.4
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -32,6 +32,8 @@ class itmooti_oap_custom_theme
 		curl_setopt($session, CURLOPT_HEADER, false);
 		curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
+		curl_setopt($session, CURLOPT_TIMEOUT, 3);
 		$response = json_decode(curl_exec($session));
 		curl_close($session);
 		if(isset($response->status) && $response->status=="success"){
@@ -81,6 +83,8 @@ class itmooti_oap_custom_theme
 			curl_setopt($session, CURLOPT_HEADER, false);
 			curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
+			curl_setopt($session, CURLOPT_TIMEOUT, 3);
 			$response = json_decode(curl_exec($session));
 			curl_close($session);
 			if(isset($response->status) && $response->status=="success"){
@@ -152,6 +156,8 @@ class itmooti_oap_custom_theme
 					curl_setopt($session, CURLOPT_HEADER, false);
 					curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
+					curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
+					curl_setopt($session, CURLOPT_TIMEOUT, 3);
 					$response = json_decode(curl_exec($session));
 					curl_close($session);
 					if(isset($response->status) && $response->status=="success"){
