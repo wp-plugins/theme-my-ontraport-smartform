@@ -23,7 +23,7 @@ class itmooti_oap_custom_theme
 		elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
 			$isSecure = true;
 		}
-		$this->url=($isSecure ? 'http' : 'http')."://app.itmooti.com/wp-plugins/oap-utm/api.php";
+		$this->url=($isSecure ? 'https' : 'http')."://app.itmooti.com/wp-plugins/oap-utm/api.php";
 		$request= "plugin_links";
 		$postargs = "plugin=itmooti-oap-themes&request=".urlencode($request);
 		$session = curl_init($this->url);

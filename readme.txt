@@ -64,10 +64,6 @@ Nothing yet.
 
 = 1.2.2 =
 
-Fixed SSL Connection issue
-
-= 1.2.2 =
-
 Fixed License verification
 
 = 1.2.1 =
