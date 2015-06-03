@@ -146,7 +146,7 @@
     box-shadow: 2px 2px 0 rgba(84, 170, 223, 0.1) !important;
 	background:#c4e8ff !important;
 }
-.moonray-form .moonray-form-payments-element .moonray-form-input-type-select label{ display:none;}
+.moonray-form .moonray-form-payments-element .moonray-form-input-type-select label{ display:none !important;}
 .moonray-form .moonray-form-payments-element input[type=text],.moonray-form .moonray-form-payments-element input[type=tel],
 .moonray-form .moonray-form-payments-element input[type=email],
 .moonray-form .moonray-form-payments-element input[type=password],
