@@ -13,12 +13,12 @@
 .moonray_forms .cell{ width:50%; margin:0 !important; float: left !important;}
 .moonray_forms .cell:first-child{ padding-right:15px;}
 
-.moonray-form input[type=text],
+.moonray-form input[type=text],.moonray-form input[type=tel],
 .moonray-form input[type=email],
 .moonray-form input[type=password],
 .moonray-form input[type=number],
 .moonray-form select,
-.moonray_forms input[type=text],
+.moonray_forms input[type=text],.moonray_forms input[type=tel],
 .moonray_forms input[type=email],
 .moonray_forms input[type=password],
 .moonray_forms input[type=number],
@@ -35,7 +35,7 @@
 	min-width:75px !important;
 	color:#999 !important;
 }
-.moonray_forms input[type=text],
+.moonray_forms input[type=text],.moonray_forms input[type=tel],
 .moonray_forms input[type=email],
 .moonray_forms input[type=password],
 .moonray_forms input[type=number],
@@ -43,11 +43,11 @@
 	margin-bottom:10px !important;
 	margin-top:10px !important;
 }
-.moonray-form input[type=text].moonray-form-state-error,
+.moonray-form input[type=text].moonray-form-state-error,.moonray-form input[type=tel].moonray-form-state-error,
 .moonray-form input[type=email].moonray-form-state-error,
 .moonray-form input[type=password].moonray-form-state-error,
 .moonray-form input[type=number].moonray-form-state-error,
-.moonray_forms input[type=text].mr_error,
+.moonray_forms input[type=text].mr_error,.moonray_forms input[type=tel].mr_error,
 .moonray_forms input[type=email].mr_error,
 .moonray_forms input[type=password].mr_error,
 .moonray_forms input[type=number].mr_error,
@@ -57,12 +57,12 @@
 { border:solid 1px #8b0300 !important;
 }
 
-.moonray-form input[type=text]:focus,
+.moonray-form input[type=text]:focus,.moonray-form input[type=tel]:focus,
 .moonray-form input[type=email]:focus,
 .moonray-form input[type=password]:focus,
 .moonray-form input[type=number]:focus,
 .moonray-form select:focus,
-.moonray_forms input[type=text]:focus,
+.moonray_forms input[type=text]:focus,.moonray_forms input[type=tel]:focus,
 .moonray_forms input[type=email]:focus,
 .moonray_forms input[type=password]:focus,
 .moonray_forms input[type=number]:focus,
@@ -70,24 +70,24 @@
 	background-color:#fff !important;
 	border: solid 1px #bdc7d8 !important;
 }
-.moonray-form .moonray-form-payments-element input[type=text],
+.moonray-form .moonray-form-payments-element input[type=text],.moonray-form .moonray-form-payments-element input[type=tel],
 .moonray-form .moonray-form-payments-element input[type=email],
 .moonray-form .moonray-form-payments-element input[type=password],
 .moonray-form .moonray-form-payments-element input[type=number],
 .moonray-form .moonray-form-payments-element select,
-.moonray_forms .paymentInfo input[type=text],
+.moonray_forms .paymentInfo input[type=text],.moonray_forms .paymentInfo input[type=tel],
 .moonray_forms .paymentInfo input[type=email],
 .moonray_forms .paymentInfo input[type=password],
 .moonray_forms .paymentInfo input[type=number],
 .moonray_forms .paymentInfo select{
 	background-color:#FFFCED !important;
 }
-.moonray-form .moonray-form-payments-element input[type=text]:focus,
+.moonray-form .moonray-form-payments-element input[type=text]:focus,.moonray-form .moonray-form-payments-element input[type=tel]:focus,
 .moonray-form .moonray-form-payments-element input[type=email]:focus,
 .moonray-form .moonray-form-payments-element input[type=password]:focus,
 .moonray-form .moonray-form-payments-element input[type=number]:focus,
 .moonray-form .moonray-form-payments-element select:focus,
-.moonray_forms .paymentInfo input[type=text]:focus,
+.moonray_forms .paymentInfo input[type=text]:focus,.moonray_forms .paymentInfo input[type=tel]:focus,
 .moonray_forms .paymentInfo input[type=email]:focus,
 .moonray_forms .paymentInfo input[type=password]:focus,
 .moonray_forms .paymentInfo input[type=number]:focus,

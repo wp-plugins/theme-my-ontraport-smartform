@@ -8,6 +8,10 @@ jQuery(window).load(function(){
 				$label.find(".moonray_required").addClass("mandatory");
 		}
 	});
+	jQuery(".moonray-form select[data-required=true] option[value=]").each(function(){
+		$this=jQuery(this);
+		$this.html($this.html()+' <span style="color: red !important"> *</span>');
+	});
 	jQuery(".moonray_forms .required").each(function(){
 		$label=jQuery(".moonray_forms label[for="+jQuery(this).attr("name")+"]");
 		if($label.length>0){
