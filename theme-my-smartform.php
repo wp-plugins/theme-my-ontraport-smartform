@@ -3,8 +3,8 @@
  * Plugin Name: Theme My Ontraport Smartform
  * Plugin URI: http://www.itmooti.com/
  * Description: Custom Themes for Ontraport/Office Auto Pilot Smart Forms
- * Version: 1.2.5
- * Stable tag: 1.2.5
+ * Version: 1.2.6
+ * Stable tag: 1.2.6
  * Author: ITMOOTI
  * Author URI: http://www.itmooti.com/
  */
@@ -16,6 +16,29 @@ class itmooti_oap_custom_theme
 	private $plugin_links;
 	
 	public function __construct(){
+		$this->plugin_links=(object)array("support_link"=>get_option("oap_custom_theme_plugin_link_support_link", ""), "license_link"=>get_option("oap_custom_theme_plugin_link_license_link", ""));
+		register_activation_hook(__FILE__, array($this, 'plugin_activation'));
+		add_action('plugin_scheduled_event', array($this, 'plugin_authentication'));
+		register_deactivation_hook(__FILE__, array($this, 'plugin_deactivation'));
+		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
+		add_action( 'admin_notices', array( $this, 'show_license_info' ) );
+		add_shortcode( 'custom_form_style', array($this, 'itmooti_oap_custom_theme'));
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this, 'itmooti_plugin_action_link'));
+		add_filter( 'plugin_row_meta', array($this, 'itmooti_plugin_meta_link'), 10, 2);
+    }
+	public function is_authenticated(){
+		if(get_option("oap_custom_theme_plugin_authenticated", "no")=="yes")
+			return true;
+		else
+			return false;
+	}
+	public function plugin_activation(){
+		wp_schedule_event(time(), 'twicedaily', 'plugin_scheduled_event');
+	}
+	public function plugin_deactivation(){
+		wp_clear_scheduled_hook('plugin_scheduled_event');
+	}
+	public function plugin_authentication(){
 		$isSecure = false;
 		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 			$isSecure = true;
@@ -37,18 +60,38 @@ class itmooti_oap_custom_theme
 		$response = json_decode(curl_exec($session));
 		curl_close($session);
 		if(isset($response->status) && $response->status=="success"){
-			$this->plugin_links=$response->message;
+			update_option("oap_custom_theme_plugin_link_support_link", $response->message->support_link);
+			update_option("oap_custom_theme_plugin_link_license_link", $response->message->license_link);
+		}
+		$license_key=get_option('oap_custom_theme_license_key', "");
+		if(!empty($license_key)){
+			$request= "verify";
+			$postargs = "plugin=itmooti-oap-themes&domain=".urlencode($_SERVER['HTTP_HOST'])."&license_key=".urlencode($license_key)."&request=".urlencode($request);
+			$session = curl_init($this->url);
+			curl_setopt ($session, CURLOPT_POST, true);
+			curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
+			curl_setopt($session, CURLOPT_HEADER, false);
+			curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
+			curl_setopt($session, CURLOPT_TIMEOUT, 3);
+			$response = json_decode(curl_exec($session));
+			curl_close($session);
+			if(isset($response->status) && $response->status=="success"){
+				update_option("oap_custom_theme_plugin_authenticated", "yes");
+				if(isset($response->message))
+					update_option("itmooti-oap-themes_message", $response->message);
+			}
+			else if(isset($response->status) && $response->status=="error"){
+				update_option("oap_custom_theme_plugin_authenticated", "no");
+				if(isset($response->message))
+					update_option("itmooti-oap-themes_message", $response->message);
+			}
 		}
 		else{
-			$this->plugin_links=(object)array("support_link"=>"", "license_link"=>"");
+			update_option("oap_custom_theme_plugin_authenticated", "no");
+			update_option("itmooti-oap-themes_message", "Please enter valid license key");
 		}
-		add_action( 'admin_menu', array( $this, 'add_itmooti_oap_custom_theme' ) );
-		add_action( 'admin_notices', array( $this, 'show_license_info' ) );
-		add_shortcode( 'custom_form_style', array($this, 'itmooti_oap_custom_theme'));
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array($this, 'itmooti_plugin_action_link'));
-		add_filter( 'plugin_row_meta', array($this, 'itmooti_plugin_meta_link'), 10, 2);
-    }
-	
+	}
 	function itmooti_plugin_action_link( $links ) {
 		return array_merge(
 			array(
@@ -73,28 +116,13 @@ class itmooti_oap_custom_theme
 	}
 	 
 	public function itmooti_oap_custom_theme( $atts ) {
-		$license_key=get_option('oap_custom_theme_license_key', "");
-		if(!empty($license_key)){
-			$request= "verify";
-			$postargs = "plugin=itmooti-oap-themes&domain=".urlencode($_SERVER['HTTP_HOST'])."&license_key=".urlencode($license_key)."&request=".urlencode($request);
-			$session = curl_init($this->url);
-			curl_setopt ($session, CURLOPT_POST, true);
-			curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
-			curl_setopt($session, CURLOPT_HEADER, false);
-			curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
-			curl_setopt($session, CURLOPT_TIMEOUT, 3);
-			$response = json_decode(curl_exec($session));
-			curl_close($session);
-			if(isset($response->status) && $response->status=="success"){
-				$atts = shortcode_atts( array(
-					'theme' => 'Amber'
-				), $atts );
-				$atts["theme"]=strtolower($atts["theme"]);
-				add_action( 'wp_enqueue_scripts', array($this, 'itmooti_oap_custom_js'));
-				return '<script>var itmooti_oap_custom_theme_path="'.plugins_url('themes/'.$atts["theme"].'/', __FILE__).'";</script><script src="'.plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__).'"></script><link href="'.plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__).'" type="text/css" rel="stylesheet" />';
-			}
+		if($this->is_authenticated()){
+			$atts = shortcode_atts( array(
+				'theme' => 'Amber'
+			), $atts );
+			$atts["theme"]=strtolower($atts["theme"]);
+			add_action( 'wp_enqueue_scripts', array($this, 'itmooti_oap_custom_js'));
+			return '<script>var itmooti_oap_custom_theme_path="'.plugins_url('themes/'.$atts["theme"].'/', __FILE__).'";</script><script src="'.plugins_url('themes/'.$atts["theme"].'/js.js', __FILE__).'"></script><link href="'.plugins_url('themes/'.$atts["theme"].'/style.css', __FILE__).'" type="text/css" rel="stylesheet" />';
 		}
 		return "<!-- Wrong API Credentials -->";
 	}
@@ -130,8 +158,10 @@ class itmooti_oap_custom_theme
     }
 	
 	 public function create_admin_page(){
-        if(isset($_POST["oap_custom_theme_license_key"]))
+        if(isset($_POST["oap_custom_theme_license_key"])){
 			add_option("oap_custom_theme_license_key", $_POST["oap_custom_theme_license_key"]) or update_option("oap_custom_theme_license_key", $_POST["oap_custom_theme_license_key"]);
+			$this->plugin_authentication();
+		}
 		?>
         <div class="wrap">
             <?php screen_icon(); ?>
@@ -147,29 +177,13 @@ class itmooti_oap_custom_theme
                    	</tr>
               	</table>
 				<?php				
-				if(!empty($license_key)){
-					$request= "verify";
-					$postargs = "plugin=itmooti-oap-themes&domain=".urlencode($_SERVER['HTTP_HOST'])."&license_key=".urlencode($license_key)."&request=".urlencode($request);
-					$session = curl_init($this->url);
-					curl_setopt ($session, CURLOPT_POST, true);
-					curl_setopt ($session, CURLOPT_POSTFIELDS, $postargs);
-					curl_setopt($session, CURLOPT_HEADER, false);
-					curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
-					curl_setopt($session, CURLOPT_CONNECTTIMEOUT ,3); 
-					curl_setopt($session, CURLOPT_TIMEOUT, 3);
-					$response = json_decode(curl_exec($session));
-					curl_close($session);
-					if(isset($response->status) && $response->status=="success"){
-						if(isset($response->message))
-							add_option("itmooti-oap-themes_message", $response->message) or update_option("itmooti-oap-themes_message", $response->message);
-						echo "Successfully authenticated. You can use the Custom themes now.";
-					}
-					else{
-						if(isset($response->message))
-							echo $response->message;
-						else
-							echo "Error in license key verification. Try again later";
+				if($this->is_authenticated()){
+					echo "Successfully authenticated. You can use the Custom themes now.";
+				}
+				else{
+					$message=get_option("itmooti-oap-themes_message", "");
+					if($message!=""){
+						echo $message;
 					}
 				}
 				?>
