@@ -462,7 +462,7 @@ div.moonray_order_form input.checkbox, div.moonray_order_form label.checkbox {
 .moonray-form-payments-element td:first-child{ width: 148px;}
 .moonray-form-element-paymentmethod .moonray-form-input-type-payment-number.moonray-form-input-type-text .moonray-form-input,.moonray-form-element-paymentmethod .moonray-form-input-type-payment-code.moonray-form-input-type-text .moonray-form-input{ width:100% !important;}
 .moonray-form-element-paymentmethod .moonray-form-element-wrapper.moonray-form-input-type-select .moonray-form-input{ width:100% !important;}
-.moonray-form-element-wrapper.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-email,.moonray-form-element-wrapper.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-text {
+.moonray-form-element-wrapper.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-email,.moonray-form-element-wrapper.moonray-form-element-wrapper-alignment-left.moonray-form-input-type-text , .moonray-form .moonray-form-element-wrapper{
     padding: 0 20px 20px !important;
 }
 .grid-summary{ margin-top:-1px !important;}
